@@ -923,13 +923,19 @@ header.mast{background:var(--surface-2);border-bottom:1px solid var(--line)}
     const p = fichaList[fichaIndex]; if (!p) return;
     const url = productUrl(p);
     const publicada = /^https?:/i.test(url);
-    if (publicada && navigator.share) {
-      try { await navigator.share({ title: `${p.brand} ${p.item} · USA Ropa Americana`, text: `Mira esta prenda en USA Ropa Americana: ${p.brand} ${p.item} ${p.color.toLowerCase()}, talla ${sizeLabel(p)}.`, url }); return; }
-      catch (e) { if (e && e.name === 'AbortError') return; }
-    }
     const ok = await copyText(url);
     const aviso = publicada ? '' : ' Ojo: la página aún no está publicada, así que este enlace solo abre la prenda en este equipo.';
     toast(ok ? `Enlace de la prenda copiado.${aviso}` : `Copia este enlace: ${url}`);
+    if (ok && publicada) {
+      const t = $('#toast');
+      if (t) {
+        const a = document.createElement('a');
+        a.href = 'https://wa.me/?text=' + encodeURIComponent(`Mira esta prenda en USA Ropa Americana: ${p.brand} ${p.item} ${url}`);
+        a.target = '_blank'; a.rel = 'noopener'; a.textContent = ' Enviar por WhatsApp';
+        a.style.cssText = 'color:inherit;font-weight:700;text-decoration:underline;margin-left:6px';
+        t.appendChild(a);
+      }
+    }
   });
   const showDialog = d => { if (!d.open) { if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', ''); } };
   const hideDialog = d => { if (typeof d.close === 'function') d.close(); else { d.removeAttribute('open'); d.dispatchEvent(new Event('close')); } };
@@ -1495,6 +1501,14 @@ header.mast{background:var(--surface-2);border-bottom:1px solid var(--line)}
       if (!isAvailable(p)) openFicha([p], 0, 'enlace');
       else openFicha(products, products.indexOf(p), 'enlace');
     };
+    // La maleta abre en la sección de niños (solo el tubo; el filtro del catálogo de abajo sigue en «Toda la maleta»).
+    if (poolFor('ninos').length) {
+      tubeAudience = 'ninos';
+      document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.aud === 'ninos')));
+      const listaNinos = poolFor('ninos');
+      updateTubeNotes(listaNinos);
+      closet.show(listaNinos, false);
+    }
     window.addEventListener('hashchange', openFromHash);
     openFromHash();
   } catch (error) {
