@@ -1,0 +1,56 @@
+{
+ "nueva-york": {
+  "texto": "Nueva York",
+  "w": 480,
+  "h": 521,
+  "kb": 113
+ },
+ "cartagena": {
+  "texto": "Cartagena",
+  "w": 480,
+  "h": 503,
+  "kb": 81
+ },
+ "new-jersey": {
+  "texto": "New Jersey",
+  "w": 480,
+  "h": 440,
+  "kb": 98
+ },
+ "miami": {
+  "texto": "Miami",
+  "w": 480,
+  "h": 462,
+  "kb": 69
+ },
+ "washington-dc": {
+  "texto": "Washington D.C.",
+  "w": 480,
+  "h": 469,
+  "kb": 102
+ },
+ "los-angeles": {
+  "texto": "Los Ángeles",
+  "w": 480,
+  "h": 473,
+  "kb": 54
+ },
+ "orlando": {
+  "texto": "Orlando",
+  "w": 480,
+  "h": 469,
+  "kb": 85
+ },
+ "las-vegas": {
+  "texto": "Las Vegas",
+  "w": 480,
+  "h": 485,
+  "kb": 71
+ },
+ "bogota": {
+  "texto": "Bogotá",
+  "w": 480,
+  "h": 475,
+  "kb": 56
+ }
+}
