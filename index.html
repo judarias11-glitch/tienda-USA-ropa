@@ -665,7 +665,7 @@ header.mast{background:var(--surface-2);border-bottom:1px solid var(--line)}
       <details><summary>¿La prenda sigue disponible?</summary><p>Cada prenda es una referencia de nuestro inventario y puede venderse en cualquier momento. Escríbenos por WhatsApp y te confirmamos si sigue disponible.</p></details>
       <details><summary>¿Dan factura?</summary><p>Sí, si la necesitas. Pídela por WhatsApp y te la entregamos.</p></details>
       <details><summary>¿Cómo pago?</summary><p>Con efectivo o transferencia (Nequi, Daviplata y similares). El pago se acuerda por WhatsApp: la página no cobra en línea.</p></details>
-      <details><summary>¿Cómo puedo pagar?</summary><p>Por Nequi, por Daviplata, con transferencia o en efectivo. El pago se acuerda por WhatsApp; la página no cobra en línea. Los precios están en pesos colombianos.</p></details>
+      
       <details><summary>¿Hay más tallas o colores de una prenda?</summary><p>Cada referencia del catálogo muestra su talla. Pregúntanos por WhatsApp qué más tenemos disponible.</p></details>
       <details><summary>¿Cada cuánto llega más ropa?</summary><p>La maleta se va llenando con compras en Estados Unidos. Escríbenos y te contamos lo que va llegando.</p></details>
     </div>
@@ -709,7 +709,7 @@ header.mast{background:var(--surface-2);border-bottom:1px solid var(--line)}
   </div>
 </dialog>
 
-<footer class="footer"><div class="wrap"><p class="footer-claim">Lo que trae la maleta, ahora es tuyo.</p><span class="footer-lines"><span>USA Ropa Americana · Ropa y accesorios de marcas de Estados Unidos · Bogotá, Colombia</span><span>Domicilio en Bogotá en 1 a 2 días. Resto del país: escríbenos por WhatsApp y te contamos.</span><span>Pagos: Nequi, Daviplata, transferencias y efectivo.</span><span class="footer-wa-line">Compras y pedidos: WhatsApp <a id="footer-wa" class="wa-number" href="#" target="_blank" rel="noopener"></a></span><span class="footer-enc-line">Encargos especiales: WhatsApp <a id="footer-encargo" class="encargo-number" href="#" target="_blank" rel="noopener"></a></span><span class="footer-disclaimer">Las marcas mencionadas pertenecen a sus dueños. No somos distribuidores oficiales de las marcas ni usamos sus logos como propios.</span><span class="footer-sic">Protección al consumidor: <a id="footer-sic" href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio (SIC)</a></span></span></div></footer>
+<footer class="footer"><div class="wrap"><p class="footer-claim">Lo que trae la maleta, ahora es tuyo.</p><span class="footer-lines"><span>USA Ropa Americana · Ropa y accesorios de marcas de Estados Unidos · Bogotá, Colombia</span><span>Atención comercial: Julián Arias Romero · <a href="mailto:judarias11@gmail.com">judarias11@gmail.com</a></span><span>NIT y dirección de notificación: pendientes de completar.</span><span>Domicilio en Bogotá en 1 a 2 días. Resto del país: escríbenos por WhatsApp y te contamos.</span><span>Pagos: Nequi, Daviplata, transferencias y efectivo.</span><span class="footer-wa-line">Compras y pedidos: WhatsApp <a id="footer-wa" class="wa-number" href="#" target="_blank" rel="noopener"></a></span><span class="footer-enc-line">Encargos especiales: WhatsApp <a id="footer-encargo" class="encargo-number" href="#" target="_blank" rel="noopener"></a></span><span class="footer-disclaimer">Las marcas mencionadas pertenecen a sus dueños. No somos distribuidores oficiales de las marcas ni usamos sus logos como propios.</span><span class="footer-sic">Protección al consumidor: <a id="footer-sic" href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio (SIC)</a></span></span></div></footer>
 <a class="floating-wa" id="floating-wa" aria-label="Comprar por WhatsApp (compras directas en Colombia)" href="#" target="_blank" rel="noopener"><span class="wa-dot" aria-hidden="true"></span><span class="wa-text">Comprar por WhatsApp<small>Compras directas en Colombia</small><small>Domicilio en Bogotá en 1 a 2 días</small></span></a>
 <noscript><p style="padding:16px;text-align:center">Activa JavaScript en tu navegador para abrir la maleta y ver el catálogo.</p></noscript>
 
@@ -1687,6 +1687,18 @@ header.mast{background:var(--surface-2);border-bottom:1px solid var(--line)}
   medir(); pintar(); marcar();
   requestAnimationFrame(ciclo);
 })();
-</script>
+</script><div class="shop-assistant" id="shop-assistant">
+  <button class="shop-assistant-toggle" id="shop-assistant-toggle" type="button" aria-controls="shop-assistant-panel" aria-expanded="false">¿Te ayudo?</button>
+  <section class="shop-assistant-panel" id="shop-assistant-panel" aria-label="Ayuda para comprar" hidden>
+    <div class="shop-assistant-head"><strong>Ayuda de la maleta</strong><button id="shop-assistant-close" type="button" aria-label="Cerrar ayuda">×</button></div>
+    <p class="shop-assistant-intro">Consulta prendas, tallas, pagos y entregas. Las respuestas salen del catálogo publicado; confirma disponibilidad antes de pagar.</p>
+    <div class="shop-assistant-log" id="shop-assistant-log" role="log" aria-live="polite" aria-relevant="additions"></div>
+    <form class="shop-assistant-form" id="shop-assistant-form"><label for="shop-assistant-input">Tu pregunta</label><div><input id="shop-assistant-input" type="text" maxlength="180" autocomplete="off" placeholder="Ej.: chaquetas Nike talla M"><button type="submit">Enviar</button></div></form>
+    <p class="shop-assistant-note">Este asistente no guarda ni envía tus preguntas. Si abres WhatsApp, se aplican sus propias condiciones.</p>
+  </section>
+</div>
+<link rel="stylesheet" href="asistente-tienda.css">
+<script src="asistente-tienda.js" defer></script>
+
 </body>
 </html>
