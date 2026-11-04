@@ -1,0 +1,16 @@
+.shop-assistant{position:fixed;right:22px;bottom:92px;z-index:105;font:16px/1.4 system-ui,sans-serif;color:#17212b}
+.shop-assistant-toggle{border:2px solid #17212b;border-radius:999px;padding:12px 18px;background:#fff2a7;color:#17212b;font-weight:800;box-shadow:0 4px 12px #0003;cursor:pointer}
+.shop-assistant-panel{position:absolute;right:0;bottom:58px;width:min(390px,calc(100vw - 32px));max-height:min(560px,calc(100dvh - 170px));display:flex;flex-direction:column;background:#fff;border:2px solid #17212b;border-radius:16px;box-shadow:0 12px 32px #0004;overflow:hidden}
+.shop-assistant-panel[hidden]{display:none}
+.shop-assistant-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#ffdc24}
+.shop-assistant-head button{border:0;background:transparent;font-size:26px;line-height:1;cursor:pointer}
+.shop-assistant-intro,.shop-assistant-note{margin:0;padding:10px 16px;font-size:13px;line-height:1.45}
+.shop-assistant-note{border-top:1px solid #ddd}
+.shop-assistant-log{min-height:100px;overflow:auto;padding:12px 16px;background:#f8fafb;display:grid;align-content:start;gap:10px}
+.shop-assistant-message{max-width:95%;margin:0;padding:9px 12px;border-radius:12px;background:#e8f0ff;white-space:pre-wrap;overflow-wrap:anywhere}
+.shop-assistant-message.user{justify-self:end;background:#fff2a7}
+.shop-assistant-message a{color:#064f9c;text-decoration:underline}
+.shop-assistant-form{padding:10px 16px}.shop-assistant-form label{display:block;font-size:13px;font-weight:700;margin-bottom:4px}
+.shop-assistant-form>div{display:flex;gap:6px}.shop-assistant-form input{min-width:0;flex:1;border:1px solid #777;border-radius:8px;padding:9px;font:inherit}.shop-assistant-form button{border:0;border-radius:8px;padding:8px 10px;background:#ffdc24;color:#17212b;font-weight:700;cursor:pointer}
+.shop-assistant :focus-visible{outline:3px solid #d02b31;outline-offset:2px}
+@media(max-width:640px){.shop-assistant{right:12px;bottom:88px}.shop-assistant-panel{bottom:54px;max-height:calc(100dvh - 160px)}}
