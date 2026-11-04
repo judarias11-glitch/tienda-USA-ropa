@@ -746,6 +746,24 @@ header.mast{background:var(--surface-2);border-bottom:1px solid var(--line)}
   }
   var SONIDOS = {
     abrir: function (c, t) { tono(c, t, 'triangle', 180, 420, 0.7, 0.14); tono(c, t, 'square', 900, 900, 0.09, 0.12, 0.02); },
+    avion: function (c, t) {
+      // Mismo efecto de la vista previa, sintetizado en el navegador y sin descarga externa.
+      var rate = c.sampleRate, duration = 1.55, n = Math.floor(rate * duration);
+      var b = c.createBuffer(1, n, rate), d = b.getChannelData(0);
+      var seed = 24, low = 0, phase = 0;
+      function rand() { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296 * 2 - 1; }
+      for (var i = 0; i < n; i++) {
+        var x = i / rate;
+        var freq = x < 0.72 ? 280 * Math.exp(Math.log(1100 / 280) * x / 0.72)
+          : 1100 * Math.exp(Math.log(320 / 1100) * (x - 0.72) / (duration - 0.72));
+        low += Math.min(1, 2 * Math.PI * freq / rate) * (rand() - low);
+        var envelope = Math.pow(Math.sin(Math.PI * x / duration), 1.2);
+        var pitch = 95 * Math.exp(Math.log(145 / 95) * Math.min(x, 1.1) / 1.1);
+        phase += 2 * Math.PI * pitch / rate;
+        d[i] = Math.max(-1, Math.min(1, (low * 0.8 + Math.sin(phase) * 0.25) * envelope * 0.6));
+      }
+      var s = c.createBufferSource(); s.buffer = b; s.connect(c.destination); s.start(t);
+    },
     cerrar: function (c, t) { tono(c, t, 'triangle', 420, 180, 0.7, 0.14); tono(c, t, 'square', 900, 900, 0.09, 0.12, 0.62); },
     whoosh: function (c, t) {   // ruido filtrado que sube y baja: arrastrar el cinturón
       var n = Math.floor(c.sampleRate * 0.4), b = c.createBuffer(1, n, c.sampleRate), d = b.getChannelData(0);
@@ -1280,7 +1298,7 @@ header.mast{background:var(--surface-2);border-bottom:1px solid var(--line)}
     setTimeout(() => { if (trunk.dataset.state === 'closing') { trunk.dataset.state = 'closed'; syncTrunkToggle(false); } }, 1200);
   }
   // Sonido breve (sintetizado con Web Audio: sin archivos) solo cuando la persona abre o cierra con un clic, toque o tecla; nunca al cargar ni al desplazarse.
-  function sonidoMaleta(abre) { if (window.USA_AUDIO) window.USA_AUDIO.play(abre ? 'abrir' : 'cerrar'); }   // sonido compartido: ver el módulo de audio al inicio de los scripts
+  function sonidoMaleta(abre) { if (window.USA_AUDIO) window.USA_AUDIO.play(abre ? 'avion' : 'cerrar'); }   // sonido compartido: ver el módulo de audio al inicio de los scripts
   function abrirPorPersona(instant) { if (trunk.dataset.state === 'closed') { sonidoMaleta(true); openTrunk(instant); } }
   trunkToggle.addEventListener('click', () => { if (trunk.dataset.state === 'open') { sonidoMaleta(false); closeTrunk(false); } else abrirPorPersona(false); });
   $('#trunk-open').addEventListener('click', () => abrirPorPersona(false));
